@@ -1,7 +1,7 @@
 ## Touchable.js
 ### Because some things just need to be touched.
 
-Touchable.js is a simple light-weight (1.98 kb compressed) JavaScript library for dealing with touch events in the browser. With no dependencies, just add the script to your page and start hacking.
+Touchable.js is a simple light-weight (2.05 kb compressed) JavaScript library for dealing with touch events in the browser. With no dependencies, just add the script to your page and start hacking.
 
 
 ## Links
