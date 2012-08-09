@@ -1,10 +1,35 @@
-/*
-	Touchy.js
-	Socket-style finger management for touch events
-
-	Jairaj Sethi
-	http://creativecommons.org/licenses/by/3.0/
-*/
+/**
+ * touchable.js v1.0
+ * Socket-style finger management for touch events
+ * Copyright (c) 2012 Kik Interactive, http://kik.com
+ * Released under the MIT license
+ *
+ * Touchy.js
+ * Socket-style finger management for touch events
+ * Jairaj Sethi
+ * http://creativecommons.org/licenses/by/3.0/
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
 
 
 
@@ -326,7 +351,7 @@
 
 
 
-	/* Controller object to handle Touchy interactions on an element */
+	/* Controller object to handle Touchable interactions on an element */
 	function TouchController (elem, handleMouse, settings) {
 		if (typeof settings == 'undefined') {
 			settings = handleMouse;
@@ -691,15 +716,15 @@
 	};
 
 	/* Socket-style finger management for multi-touch events */
-	function Touchy (elem, handleMouse, settings) {
+	function Touchable (elem, handleMouse, settings) {
 		return new TouchController(elem, handleMouse, settings);
 	}
 
 	/* Plugin support for custom touch handling */
 	var plugins = {};
-	Touchy.plugin = function (name, callback) {
+	Touchable.plugin = function (name, callback) {
 		if (name in plugins) {
-			throw 'Touchy: ' + name + ' plugin already defined';
+			throw 'Touchable: ' + name + ' plugin already defined';
 		}
 
 		plugins[name] = callback;
@@ -710,34 +735,34 @@
 	/* Prevent window movement (iOS fix) */
 	var preventDefault = function (e) { e.preventDefault() };
 
-	Touchy.stopWindowBounce = function () {
+	Touchable.stopWindowBounce = function () {
 		bind(window, 'touchmove', preventDefault);
 	};
 
-	Touchy.startWindowBounce = function () {
+	Touchable.startWindowBounce = function () {
 		unbind(window, 'touchmove', preventDefault);
 	};
 
 
 
 	/* Publicise object */
-	window.Touchy = Touchy;
+	window.Touchable = Touchable;
 
 	if (clik) {
-		clik.plugin('touchy', function () {
-			Touchy.apply(window, arguments);
+		clik.plugin('touchable', function () {
+			Touchable.apply(window, arguments);
 		});
 	}
 
 	if (Zepto) {
 		Zepto.extend(Zepto.fn, {
-			touchy : function () {
+			touchable : function () {
 				var args = Array.prototype.slice.call(arguments);
 
 				this.forEach(function (elem) {
 					var thisArgs = args.slice();
 					thisArgs.unshift(this);
-					Touchy.apply(window, thisArgs);
+					Touchable.apply(window, thisArgs);
 				});
 				return this;
 			}
@@ -745,13 +770,13 @@
 	}
 
 	if (jQuery) {
-		jQuery.fn.touchy = function () {
+		jQuery.fn.touchable = function () {
 			var args = Array.prototype.slice.call(arguments);
 
 			this.each(function () {
 				var thisArgs = args.slice();
 				thisArgs.unshift(this);
-				Touchy.apply(window, thisArgs);
+				Touchable.apply(window, thisArgs);
 			});
 		};
 	}
