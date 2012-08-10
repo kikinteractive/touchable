@@ -148,12 +148,12 @@ Touchable(touchMe, {
 ```
 
 
-# jQuery wrapper
+# Zepto / jQuery wrapper
 
 ``` javascript
 var touchMe = document.getElementById('touch-me');
 Touchable(touchMe, { one: ..., two: ... });
 
-// This is equivalent to the following jQuery code:
+// This is equivalent to the following Zepto / jQuery code:
 $('#touch-me').touchable({ one: ..., two: ... });
 ```
