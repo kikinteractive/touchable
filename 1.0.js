@@ -38,6 +38,8 @@
 
 
 
+	var isAndroid = /android/i.test(navigator.userAgent);
+
 	/* Make sure I can itereate through arrays */
 	var forEach = function () {
 		if (Array.prototype.forEach) {
@@ -437,6 +439,10 @@
 		if ( !this._touchstart ) {
 			var self = this;
 			this._touchstart = function (e) {
+				if (isAndroid) {
+					e.preventDefault();
+				}
+
 				var touches = domTouchToObj(e.touches, e.timeStamp),
 					changedTouches = domTouchToObj(e.changedTouches, e.timeStamp);
 
@@ -453,6 +459,11 @@
 		if ( !this._touchmove ) {
 			var self = this;
 			this._touchmove = function (e) {
+				if (isAndroid) {
+					e.preventDefault();
+				}
+
+
 				var touches = domTouchToObj(e.touches, e.timeStamp),
 					changedTouches = domTouchToObj(e.changedTouches, e.timeStamp);
 
@@ -469,6 +480,10 @@
 		if ( !this._touchend ) {
 			var self = this;
 			this._touchend = function (e) {
+				if (isAndroid) {
+					e.preventDefault();
+				}
+
 				var touches = domTouchToObj(e.touches, e.timeStamp),
 					changedTouches = domTouchToObj(e.changedTouches, e.timeStamp);
 
