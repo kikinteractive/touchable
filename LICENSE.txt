@@ -1,5 +1,5 @@
 /**
- * touchable.js v1.0
+ * touchable.js v1.0.1
  * Socket-style finger management for touch events
  * Copyright (c) 2012 Kik Interactive, http://kik.com
  * Released under the MIT license
