@@ -496,11 +496,11 @@
 			this._mouseup = function (e) {
 				if (e.type === 'mouseout') {
 					var elem = e.relatedTarget || e.toElement;
-					while (elem && (elem !== self.elem)) {
+					while (elem) {
+						if (elem === self.elem) {
+							return;
+						}
 						elem = elem.parentNode;
-					}
-					if (elem) {
-						return;
 					}
 				}
 
